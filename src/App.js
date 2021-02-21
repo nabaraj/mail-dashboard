@@ -1,24 +1,33 @@
-import logo from './logo.svg';
-import './App.css';
+
+
+import {useEffect, useState} from 'react';
+import './App.scss';
+import {
+  Switch,
+  Route,
+} from "react-router-dom";
+import data from './data.json';
+
+import Loginpage from "./views/Loginpage";
+import Dashboard from './views/Dashboard';
+import {useLocal} from './utils/utilty';
+function Page404() {
+  return <div className="container text-center mt-5"><h2>Page Not Found</h2></div>
+}
 
 function App() {
+  const [appData, setAppData] = useState(null);
+  useEffect(()=>{
+    useLocal.save('appData', data);
+    setAppData(useLocal.get('appData'));
+    console.log(appData);
+  },[])
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Switch>
+      <Route path='/' component={Loginpage} exact />
+      <Route path='/dashboard' component={()=>appData&&<Dashboard appData={appData}/>} />
+      <Route component={Page404} />
+    </Switch>
   );
 }
 

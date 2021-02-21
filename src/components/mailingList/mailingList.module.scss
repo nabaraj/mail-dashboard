@@ -1,0 +1,47 @@
+.mailRow{
+  position: relative;
+  z-index: 1;
+  &:hover{
+    box-shadow: 1px 1px 3px #333333;
+    z-index: 2;
+  }
+}
+.from{
+  width:18%;
+  span{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+    cursor: default;
+  }
+}
+.subject{
+  width: 55%;
+  cursor: default;
+  span{
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    display: block;
+  }
+}
+.date{
+  width: 18%;
+  text-align: right;
+  cursor: default;
+}
+.searchFields{
+  input{
+    border-top-left-radius: 0.25rem;
+    border-bottom-left-radius: 0.25rem;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+  }
+  button{
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-right-radius: 0.25rem;
+    border-bottom-right-radius: 0.25rem;
+  }
+}

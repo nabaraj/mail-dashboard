@@ -1,0 +1,95 @@
+$theme-colors: (
+  "primary": #0f83c9,
+  "secondary":#2e4051,
+  "success": #00b494,
+  "warning":#faad50,
+  "danger": #f2524d,
+  "info": #07c6c9,
+  "dark":#283847,
+  "content": #3c4d5e,
+  "textLightDark":#a7b1c3,
+  "bodyGray":#f3f3f4
+);
+@import "../node_modules/bootstrap/scss/bootstrap";
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
+
+.font-8 {
+  font-size: 0.5rem;
+}
+.font-9 {
+  font-size: 0.5625rem;
+}
+.font-10 {
+  font-size: 0.625rem;
+}
+.font-12 {
+  font-size: 0.75rem;
+}
+.font-13 {
+  font-size: 0.813rem;
+}
+.font-14 {
+  font-size: 0.875rem;
+}
+.font-16 {
+  font-size: 1rem;
+}
+.font-17 {
+  font-size: 1.0625rem;
+}
+.font-18 {
+  font-size: 1.2rem;
+}
+.font-20 {
+  font-size: 1.25rem;
+}
+.font-24 {
+  font-size: 1.5rem;
+}
+.font-28 {
+  font-size: 1.75rem;
+}
+.font-34 {
+  font-size: 2.125rem;
+}
+.font-40 {
+  font-size: 2.5rem;
+}
+.font-44 {
+  font-size: 2.75rem;
+}
+.font-48 {
+  font-size: 3rem;
+}
+.font-57 {
+  font-size: 3rem;
+}
+body{
+  color: var(--content);
+  background-color: var(--bodyGray);
+}
+a{
+  color: var(--content);
+}
+body{
+  height: 100vh;
+}
+// .navbar{
+//   margin-left:-15px;
+//   margin-right:-15px;
+// }
+.sideBarToggle{
+  outline: none;
+  &:focus{
+    outline: none;
+  }
+}
+.headerToolbar{
+  .badge{
+    top: 4px;
+    right: 8px;
+  }
+}
+.mainContent{
+  flex-grow: 1;
+}
