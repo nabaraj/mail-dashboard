@@ -1,48 +1,56 @@
+import { useState } from 'react';
+import { useLocal } from './../utils/utilty';
+import { useHistory } from 'react-router-dom';
+import useUpdateForm from "./../utils/submitFormHook";
+export default function Loginpage({ appData }) {
+  let history = useHistory();
 
-export default function Loginpage() {
+  const [formData, changeField] = useUpdateForm({ email: '', password: '' });
+  const [hasError, setHasError] = useState(false);
+
+  function checkLogin(e) {
+    e.preventDefault();
+    console.log("checkLogin");
+    let userDetails = appData.filter(item => {
+      return item.email === formData.email && item.password === formData.password
+    });
+    if (userDetails.length === 0) {
+      setHasError(true);
+    } else {
+      useLocal.save('userRef', userDetails[0].id);
+      history.push('/dashboard/inbox')
+    }
+
+  }
   return (
     <div className="container" style={{ maxWidth: "480px" }}>
       <div className="card shadow mt-5">
         <div className="card-body">
-          <form className="form-horizontal">
+          <form className="form-horizontal" onSubmit={checkLogin}>
+            {hasError && <div class="text-danger">
+              Email password not matched
+            </div>}
             <fieldset>
-              <legend>Form Name</legend>
+              <legend>Login Form</legend>
               <div className="form-group">
-                <label className="control-label" for="textinput">Email</label>
+                <label className="control-label" htmlFor="textinput">Email</label>
                 <div className="">
-                  <input id="textinput" name="textinput" type="text" placeholder="Enter your email" className="form-control input-md" required="" />
-
+                  <input id="email" onChange={changeField} name="email" type="text" placeholder="Enter your email" className="form-control input-md" required="" />
                 </div>
               </div>
               <div className="form-group">
-                <label className="control-label" for="passwordinput">Password</label>
+                <label className="control-label" htmlFor="passwordinput">Password</label>
                 <div className="">
-                  <input id="passwordinput" name="passwordinput" type="password" placeholder="Enter your password" className="form-control input-md" required="" />
+                  <input id="password" onChange={changeField} name="password" type="password" placeholder="Enter your password" className="form-control input-md" required="" />
 
                 </div>
               </div>
-              <button type="button" className="btn btn-info btn-block">Submit</button>
+              <button type="submit" className="btn btn-info btn-block" disabled={!formData.email || !formData.password}>Submit</button>
             </fieldset>
           </form>
 
         </div>
       </div>
-      {/* <div className="wrapper fadeInDown">
-  <div id="formContent">
-    <div className="fadeIn first">
-      <img src="http://danielzawadzki.com/codepen/01/icon.svg" id="icon" alt="User Icon" />
-    </div>
-    <form>
-      <input type="text" id="login" className="fadeIn second" name="login" placeholder="login"/>
-      <input type="text" id="password" className="fadeIn third" name="login" placeholder="password"/>
-      <input type="submit" className="fadeIn fourth" value="Log In"/>
-    </form>
-    <div id="formFooter">
-      <a className="underlineHover" href="#">Forgot Password?</a>
-    </div>
-
-  </div>
-</div> */}
     </div>
   )
 }

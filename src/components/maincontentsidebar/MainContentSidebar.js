@@ -1,4 +1,6 @@
-const MainContentSidebar = ({userData, displayCompose}) => {
+import { filterList } from "./../../utils/utilty";
+import { Link } from 'react-router-dom';
+const MainContentSidebar = ({ userData, displayCompose }) => {
 
   return (
     <div className="col-sm-3 mb-5">
@@ -6,18 +8,25 @@ const MainContentSidebar = ({userData, displayCompose}) => {
       <h3 className="font-14 mt-4">FOLDERS</h3>
       <ul className="list-group list-group-flush font-14">
         <li className="list-group-item bg-transparent py-1 px-2 d-flex">
-          <span className="mr-2"><i className="bi bi-inbox-fill"></i></span>
-          Inbox
-          {(userData && userData['inbox'] && userData['inbox'].length>0) && <span className="d-inline-block text-white rounded px-2 bg-warning ml-auto">{userData['inbox'].length}</span>}
+          <Link to="/dashboard/inbox"><span className="mr-2"><i className="bi bi-inbox-fill"></i></span>
+          Inbox</Link>
+          {(userData && userData['inbox'] && userData['inbox'].length > 0) && <span className="d-inline-block text-white rounded px-2 bg-warning ml-auto">{filterList(userData['inbox'])}</span>}
         </li>
-        <li className="list-group-item bg-transparent py-1 px-2"><span className="mr-2"><i className="bi bi-envelope"></i></span>Send Mail</li>
+        <li className="list-group-item bg-transparent py-1 px-2 d-flex">
+          <Link to="/dashboard/sent"><span className="mr-2">
+            <i className="bi bi-envelope"></i>
+          </span>
+          Send Mail</Link>
+          {(userData && userData['sent'] && userData['sent'].length > 0) &&
+            (<span className="d-inline-block text-white rounded px-2 bg-info ml-auto">{filterList(userData['sent'])}</span>)}
+        </li>
         <li className="list-group-item bg-transparent py-1 px-2"><span className="mr-2"><i className="bi bi-sun"></i></span> Important</li>
         <li className="list-group-item bg-transparent py-1 px-2 d-flex">
-          <span className="mr-2">
+          <Link to="/dashboard/drafts"><span className="mr-2">
             <i className="bi bi-file-earmark-text"></i>
           </span>
-          Drafts
-          {(userData && userData['draft'] && userData['draft'].length>0) && <span className="d-inline-block text-white rounded px-2 bg-danger ml-auto">{userData['draft'].length}</span>}
+          Drafts</Link>
+          {(userData && userData['drafts'] && userData['drafts'].length > 0) && <span className="d-inline-block text-white rounded px-2 bg-danger ml-auto">{filterList(userData['drafts'])}</span>}
         </li>
         <li className="list-group-item bg-transparent py-1 px-2"><span className="mr-2"><i className="bi bi-trash"></i></span>Trash</li>
       </ul>

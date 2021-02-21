@@ -1,14 +1,14 @@
 $theme-colors: (
   "primary": #0f83c9,
-  "secondary":#2e4051,
+  "secondary": #2e4051,
   "success": #00b494,
-  "warning":#faad50,
+  "warning": #faad50,
   "danger": #f2524d,
   "info": #07c6c9,
-  "dark":#283847,
+  "dark": #283847,
   "content": #3c4d5e,
-  "textLightDark":#a7b1c3,
-  "bodyGray":#f3f3f4
+  "textLightDark": #a7b1c3,
+  "bodyGray": #f3f3f4,
 );
 @import "../node_modules/bootstrap/scss/bootstrap";
 @import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.3.0/font/bootstrap-icons.css");
@@ -64,32 +64,35 @@ $theme-colors: (
 .font-57 {
   font-size: 3rem;
 }
-body{
+body {
   color: var(--content);
   background-color: var(--bodyGray);
 }
-a{
+a {
   color: var(--content);
 }
-body{
+body {
   height: 100vh;
 }
 // .navbar{
 //   margin-left:-15px;
 //   margin-right:-15px;
 // }
-.sideBarToggle{
+.sideBarToggle {
   outline: none;
-  &:focus{
+  &:focus {
     outline: none;
   }
 }
-.headerToolbar{
-  .badge{
+.headerToolbar {
+  .badge {
     top: 4px;
     right: 8px;
   }
 }
-.mainContent{
+.mainContent {
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  overflow-y: auto;
 }

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react'
 
-export default function ModalWindow({ show, hidemethod, children, modalSize }) {
+export default function ModalWindow({ show, hidemethod, children, modalSize, title }) {
   const [showClass, setClass] = useState('');
   const [displayStyle, setDisplayStyle] = useState('none');
-  
+
 
   useEffect(() => {
     if (show) {
@@ -26,7 +26,7 @@ export default function ModalWindow({ show, hidemethod, children, modalSize }) {
         <div className={`modal-dialog ${modalSize}`}>
           <div className="modal-content">
             <div className="modal-header">
-              {/* <h5 className="modal-title" id="exampleModalLabel">Modal title</h5> */}
+              <h5 className="modal-title  text-truncate" id="exampleModalLabel">{title}</h5>
               <button type="button" className="close" onClick={hidemethod} data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
