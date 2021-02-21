@@ -115,6 +115,7 @@ const Dashboard = ({ appData }) => {
     toData['date'] = fromData['date'];
     fromData['from'] = userData.name;
     fromData['fromEmail'] = userData.email;
+    toData['to'] = userData.name;
     let userRef = useLocal.get('userRef');
     console.log(fromData, toData);
     if (!userRef) {
