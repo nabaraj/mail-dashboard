@@ -17,6 +17,11 @@ const MailListing = ({ boxName, mailData, showEmail, deleteMail }) => {
     }
     setselectedMail(mailList);
   }
+  function triggerDelete() {
+
+    deleteMail(Object.keys(selectedMail));
+    setselectedMail({});
+  }
   return (
     <div className="col bg-white">
       <div className="row">
@@ -35,7 +40,7 @@ const MailListing = ({ boxName, mailData, showEmail, deleteMail }) => {
           <button type="button" className="btn btn-light btn-sm pt-0 pb-1 mr-1"><i className="bi bi-arrow-counterclockwise"></i> refresh</button>
           <button type="button" className="btn btn-light btn-sm pt-0 pb-1 mr-1"><i className="bi bi-eye"></i></button>
           <button type="button" className="btn btn-light btn-sm pt-0 pb-1 mr-1"><i className="bi bi-exclamation"></i></button>
-          <button type="button" disabled={Object.keys(selectedMail).length === 0} className="btn btn-light btn-sm pt-0 pb-1 mr-1" onClick={() => deleteMail(Object.keys(selectedMail))}><i className="bi bi-trash"></i></button>
+          <button type="button" disabled={Object.keys(selectedMail).length === 0} className="btn btn-light btn-sm pt-0 pb-1 mr-1" onClick={triggerDelete}><i className="bi bi-trash"></i></button>
 
         </div>
         <div className="toolbar-right col-sm-6 py-2 ml-auto text-sm-right">
