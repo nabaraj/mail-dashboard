@@ -158,7 +158,7 @@ const Dashboard = ({ appData }) => {
   return (
     <div style={{ height: "100%" }}>
       <div className="d-flex" style={{ height: "100%" }}>
-        <Sidebar sidebarCollapsed={sidebarCollapsed} />
+        <Sidebar sidebarCollapsed={sidebarCollapsed} userData={userData} />
         <main className="mainContent">
           <Header collapsed={collapsed} logOut={logOut} />
           <div className="row mx-0 mt-5">

@@ -96,3 +96,10 @@ body {
   flex-direction: column;
   overflow-y: auto;
 }
+.avatar {
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
