@@ -18,6 +18,12 @@ const filterList = function (data) {
 const ID = function () {
   return Math.random().toString(36).substr(2, 9);
 };
+const ganerateAvatarStr = function (name) {
+  let nameArr = name.split(" ");
+  let firstChar = nameArr[0] ? nameArr[0][0] : '';
+  let secondChar = nameArr[1] ? nameArr[1][0] : '';
+  return firstChar + secondChar;
+}
 
 
-export { useLocal, filterList, ID };
+export { useLocal, filterList, ID, ganerateAvatarStr };

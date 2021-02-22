@@ -10,13 +10,13 @@ const MainContentSidebar = ({ userData, displayCompose }) => {
         <li className="list-group-item bg-transparent py-1 px-2 d-flex">
           <Link to="/dashboard/inbox"><span className="mr-2"><i className="bi bi-inbox-fill"></i></span>
           Inbox</Link>
-          {(userData && userData['inbox'] && userData['inbox'].length > 0) && <span className="d-inline-block text-white rounded px-2 bg-warning ml-auto">{filterList(userData['inbox'])}</span>}
+          {(userData && userData['inbox'] && userData['inbox'].length > 0) && <span className="d-inline-block text-white rounded px-2 bg-warning ml-auto">{userData['inbox'].length}</span>}
         </li>
         <li className="list-group-item bg-transparent py-1 px-2 d-flex">
           <Link to="/dashboard/sent"><span className="mr-2">
             <i className="bi bi-envelope"></i>
           </span>
-          Send Mail</Link>
+          Sent</Link>
           {(userData && userData['sent'] && userData['sent'].length > 0) &&
             (<span className="d-inline-block text-white rounded px-2 bg-info ml-auto">{filterList(userData['sent'])}</span>)}
         </li>

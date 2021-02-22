@@ -5,7 +5,7 @@ const EmailBody = ({ mail }) => {
         <div className="pb-3 col-12 d-none">
           <h3>{mail.subject}</h3>
         </div>
-        <div className="col-12">
+        <div className="col-12 pb-3">
           <h5 className="font-14">{mail.boxName === 'sent' ? mail.to : mail.from}<span className="text-textLightDark pl-3">{`<${mail.boxName === 'sent' ? mail.toEmail : mail.fromEmail}>`}</span></h5>
 
         </div>

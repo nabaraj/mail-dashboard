@@ -7,11 +7,13 @@ export default function ModalWindow({ show, hidemethod, children, modalSize, tit
 
   useEffect(() => {
     if (show) {
+      document.body.classList.add('modal-open');
       setDisplayStyle('block')
       setTimeout(() => {
         setClass('show');
       }, 100)
     } else {
+      document.body.classList.remove('modal-open');
       setClass('');
       setTimeout(() => {
         setDisplayStyle('none');
@@ -26,12 +28,12 @@ export default function ModalWindow({ show, hidemethod, children, modalSize, tit
         <div className={`modal-dialog ${modalSize}`}>
           <div className="modal-content">
             <div className="modal-header">
-              <h5 className="modal-title  text-truncate" id="exampleModalLabel">{title}</h5>
+              <h5 className="modal-title" id="exampleModalLabel">{title}</h5>
               <button type="button" className="close" onClick={hidemethod} data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
-            <div className="modal-body">
+            <div className="modal-body modal-dialog-scrollable">
               {children}
             </div>
           </div>
