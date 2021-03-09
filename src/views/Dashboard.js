@@ -90,7 +90,8 @@ const Dashboard = ({ appData }) => {
   }
 
   function setAppData(userRef) {
-    let userData = dashBoardData.filter(item => {
+    let getAppData = useLocal.get('appData')
+    let userData = getAppData.filter(item => {
       return item.id === userRef
     });
     setUserData(userData[0]);
@@ -98,46 +99,56 @@ const Dashboard = ({ appData }) => {
   }
 
   function deleteMail(selectedMail) {
+    // console.log(selectedMail);
     let filteredMail = mailData.filter(item => {
       return selectedMail.indexOf(item.id) === -1
     })
     editMailStatus(filteredMail);
   }
 
-  function submitMail(e) {
-    e.preventDefault();
-    let toData = { ...formData };
-    let fromData = { ...formData };
-    let { toEmail } = formData;
-    fromData['id'] = ID();
-    toData['id'] = fromData['id'];
-    fromData['date'] = new Date().toISOString();
-    toData['date'] = fromData['date'];
-    fromData['from'] = userData.name;
-    fromData['fromEmail'] = userData.email;
-    toData['to'] = userData.name;
-    let userRef = useLocal.get('userRef');
-    console.log(fromData, toData);
-    if (!userRef) {
-      history.push('/');
-    }
-    delete fromData.toEmail;
-    // console.log(fromData);
-    let editedAppData = appData.map(item => {
-      if (item.email === toEmail) {
-        item.inbox.unshift(fromData);
-      }
-      if (item.email === userData.email) {
-        item.sent.unshift(toData);
-      }
-      return item;
-    });
-    console.log(editedAppData);
-    useLocal.save('appData', editedAppData);
+  // function submitMail(e) {
+  //   e.preventDefault();
+  //   let toData = { ...formData };
+  //   let fromData = { ...formData };
+  //   let { toEmail } = formData;
+  //   fromData['id'] = ID();
+  //   toData['id'] = fromData['id'];
+  //   fromData['date'] = new Date().toISOString();
+  //   toData['date'] = fromData['date'];
+  //   fromData['from'] = userData.name;
+  //   fromData['fromEmail'] = userData.email;
+  //   toData['to'] = userData.name;
+  //   let userRef = useLocal.get('userRef');
+  //   console.log(fromData, toData);
+  //   if (!userRef) {
+  //     history.push('/');
+  //   }
+  //   delete fromData.toEmail;
+  //   // console.log(fromData);
+  //   let editedAppData = appData.map(item => {
+  //     if (item.email === toEmail) {
+  //       item.inbox.unshift(fromData);
+  //     }
+  //     if (item.email === userData.email) {
+  //       item.sent.unshift(toData);
+  //     }
+  //     return item;
+  //   });
+  //   console.log(editedAppData);
+  //   useLocal.save('appData', editedAppData);
+  //   setDashboardData(useLocal.get('appData'));
+  //   closeModal();
+  //   // editMailStatus(editedAppData);
+  // }
+
+  function onSubmit(){
     setDashboardData(useLocal.get('appData'));
     closeModal();
-    // editMailStatus(editedAppData);
   }
+  useEffect(() => {
+    let userRef = useLocal.get('userRef');
+    setAppData(userRef);
+  }, []);
 
   useEffect(() => {
     let userRef = useLocal.get('userRef');
@@ -168,7 +179,7 @@ const Dashboard = ({ appData }) => {
         </main>
       </div>
       <ModalWindow show={toggleModal} title={modalTitle} modalSize={modalType === 'compose' ? 'modal-lg' : ''} hidemethod={closeModal}>
-        {modalType === 'compose' && <ComposeForm changeField={changeField} formData={formData} submitMail={submitMail} />}
+        {modalType === 'compose' && <ComposeForm userData={userData} changeField={changeField} formData={formData} onSubmit={onSubmit} />}
         {modalType === 'email' && <EmailBody mail={mailContent} />}
       </ModalWindow>
     </div>
